@@ -8,8 +8,11 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
-class RegisterController extends Controller
+
+class RegisterController extends Controller 
 {
     /*
     |--------------------------------------------------------------------------
@@ -64,10 +67,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        
+        Log::info('Crear Usuario');
+        $usuario = new User();
+        $usuario->name = $data['name'];
+        $usuario->surname = $data['surname'];
+        $usuario->dni = $data['dni'];
+        $usuario->phone = $data['phone'];
+        $usuario->country = $data['country'];
+        $usuario->iban= $data['iban'];
+        $usuario->about = $data['about'];
+        $usuario->email = $data['email'];
+        $usuario->password = Hash::make($data['password']);
+        
+        $usuario->save();
+
+        
+        return $usuario;
+
     }
 }
