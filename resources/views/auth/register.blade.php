@@ -57,7 +57,7 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" autocomplete="phone" autofocus>
 
                                 @error('phone')
                                 <span class="invalid-feedback" role="alert">
@@ -121,7 +121,7 @@
                             <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country" autofocus>
+                                <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" autocomplete="country" autofocus>
 
                                 @error('country')
                                 <span class="invalid-feedback" role="alert">
@@ -135,7 +135,7 @@
                             <label for="about" class="col-md-4 col-form-label text-md-right">{{ __('About it') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="about" type="text" class="form-control @error('about') is-invalid @enderror" name="about" value="{{ old('about') }}" required autocomplete="about" autofocus></textarea>
+                                <textarea id="about" type="text" class="form-control @error('about') is-invalid @enderror" name="about" value="{{ old('about') }}" autocomplete="about" autofocus></textarea>
 
                                 @error('about')
                                 <span class="invalid-feedback" role="alert">
@@ -159,3 +159,19 @@
     </div>
 </div>
 @endsection
+
+<script>
+ window.addEventListener('copy', function(e) {
+    if (e.target.id == "password") {
+       e.preventDefault();
+       
+    }
+ });
+
+ window.addEventListener('paste', function(e) {
+    if (e.target.id == "password-confirm") {
+       e.preventDefault();
+       
+    }
+ });
+</script>
