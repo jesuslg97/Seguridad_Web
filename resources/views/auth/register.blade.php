@@ -121,7 +121,13 @@
                             <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                             <div class="col-md-6">
-                                <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" autocomplete="country" autofocus>
+                        
+                            <select class="form-select" id="country" name="country" aria-label="Default select example">
+                                <option selected>Selecciona una opción</option>
+                                <option value="España">España</option>
+                                <option value="Francia">Francia</option>
+                                <option value="Alemania">Alemania</option>
+                            </select>
 
                                 @error('country')
                                 <span class="invalid-feedback" role="alert">
@@ -132,7 +138,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="about" class="col-md-4 col-form-label text-md-right">{{ __('About it') }}</label>
+                            <label for="about" class="col-md-4 col-form-label text-md-right">{{__('strings.Aboutit')}}</label>
 
                             <div class="col-md-6">
                                 <textarea id="about" type="text" class="form-control @error('about') is-invalid @enderror" name="about" value="{{ old('about') }}" autocomplete="about" autofocus></textarea>

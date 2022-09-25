@@ -52,16 +52,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'name' => ['required', 'alpha','min:2', 'max:20'], //Listo(Noo deja meter nombre con espacion, entiendo que esta bien asi)
             'surname' => ['required', 'alpha','min:2', 'max:40'], //Listo
             'dni' => ['required','regex:/^[0-9]{8}[A-Z]$/i'],//Listo(No se si tiene que ser un DNI valido)
             'email' => ['required', 'email', 'unique:users'], //Listo
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'min:10', 'confirmed','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$/i'],//Listo
             'password_confirmation' =>['required'], //Listo
-            'phone' => ['nullable','min:9','max:12','regex:/^^[+]{0,1}([0-9]{9,11})$/i'], //Listo
-            'country' =>['nullable'], 
-            'iban'=> ['required'],
+            'phone' => ['nullable','min:9','max:12','regex:/^[+]{0,1}([0-9]{9,11})$/i'], //Listo
+            'country' =>['nullable'], //Listo
+            'iban'=> ['required','regex:/^([a-zA-Z]{2})\s*\t*(\d{2})\s*\t*(\d{4})\s*\t*(\d{4})\s*\t*(\d{2})\s*\t*(\d{10})$/i'], //Listo
             'about' => ['nullable','min:20','max:250'] //Listo
         ]);
     }
@@ -75,7 +76,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-        Log::info('Crear Usuario');
+
         $usuario = new User();
         $usuario->name = $data['name'];
         $usuario->surname = $data['surname'];

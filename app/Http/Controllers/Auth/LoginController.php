@@ -20,6 +20,8 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    protected $maxAttempts = 1; 
+    protected $decayMinutes = 180; 
 
     /**
      * Where to redirect users after login.
@@ -33,6 +35,8 @@ class LoginController extends Controller
      *
      * @return void
      */
+
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
