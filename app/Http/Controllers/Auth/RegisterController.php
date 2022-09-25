@@ -52,15 +52,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-
+        //https://regexr.com/3c53v
         return Validator::make($data, [
-            'name' => ['required', 'alpha','min:2', 'max:20'], //Listo(Noo deja meter nombre con espacion, entiendo que esta bien asi)
-            'surname' => ['required', 'alpha','min:2', 'max:40'], //Listo
-            'dni' => ['required','regex:/^[0-9]{8}[A-Z]$/i'],//Listo(No se si tiene que ser un DNI valido)
+            'name' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:20'], //Listo
+            'surname' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:40'], //Listo
+            'dni' => ['required','regex:/^[0-9]{8}[A-Z]$/i'],//Listo
             'email' => ['required', 'email', 'unique:users'], //Listo
             'password' => ['required', 'min:10', 'confirmed','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$/i'],//Listo
             'password_confirmation' =>['required'], //Listo
-            'phone' => ['nullable','min:9','max:12','regex:/^[+]{0,1}([0-9]{9,11})$/i'], //Listo
+            'phone' => ['nullable','min:9','max:12','regex:/^[+]{1}([0-9]{9,11})$/i'], //Listo
             'country' =>['nullable'], //Listo
             'iban'=> ['required','regex:/^([a-zA-Z]{2})\s*\t*(\d{2})\s*\t*(\d{4})\s*\t*(\d{4})\s*\t*(\d{2})\s*\t*(\d{10})$/i'], //Listo
             'about' => ['nullable','min:20','max:250'] //Listo
@@ -76,7 +76,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-
         $usuario = new User();
         $usuario->name = $data['name'];
         $usuario->surname = $data['surname'];
@@ -95,16 +94,4 @@ class RegisterController extends Controller
 
     }
 
-    public function isValidNif($nif){
-
-        $nifRegEx = '/^[0-9]{8}[A-Z]$/i';
-        $letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-
-        if (preg_match($nifRegEx, $nif)) {
-            return ($letras[(substr($nif, 0, 8) % 23)] == $nif[8]);
-        }
-
-        return false;
-
-    }
 }

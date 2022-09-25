@@ -123,7 +123,7 @@
                             <div class="col-md-6">
                         
                             <select class="form-select" id="country" name="country" aria-label="Default select example">
-                                <option selected>Selecciona una opción</option>
+                                <option value ="NULL">Selecciona una opción</option>
                                 <option value="España">España</option>
                                 <option value="Francia">Francia</option>
                                 <option value="Alemania">Alemania</option>
