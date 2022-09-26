@@ -1,0 +1,5 @@
+1º-> en la linea de comandos ejecutar el comando:  composer install
+2º-> ejecutar el comando: php artisan migrate
+3º-> una vez cargada la base de datos ejecutar el seeder con el siguiente comando:  php artisan db:seed     
+4-> Lanzar en la linea de comandos php artisan serve
+5º-> Logearnos con las siguientes credenciales -----> Usuario: seguridadweb@campusviu.es  Contraseña:S3gur1d4d?W3b
