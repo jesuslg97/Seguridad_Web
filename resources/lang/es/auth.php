@@ -12,8 +12,8 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    
+    'failed' => 'Credenciales no validas.',
+    'throttle' => 'Demasiados intentos de logeo. Porfavor intentalo en  :seconds segundos.',
 
 ];

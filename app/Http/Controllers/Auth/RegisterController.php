@@ -54,16 +54,16 @@ class RegisterController extends Controller
     {
         //https://regexr.com/3c53v
         return Validator::make($data, [
-            'name' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:20'], //Listo
-            'surname' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:40'], //Listo
+            'nombre' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:20'], //Listo
+            'apellido' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:40'], //Listo
             'dni' => ['required','regex:/^[0-9]{8}[A-Z]$/i'],//Listo
             'email' => ['required', 'email', 'unique:users'], //Listo
             'password' => ['required', 'min:10', 'confirmed','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$/i'],//Listo
             'password_confirmation' =>['required'], //Listo
-            'phone' => ['nullable','min:9','max:12','regex:/^[+]{1}([0-9]{9,11})$/i'], //Listo
+            'telefono' => ['nullable','min:9','max:12','regex:/^[+]{1}([0-9]{9,11})$/i'], //Listo
             'country' =>['nullable'], //Listo
             'iban'=> ['required','regex:/^([a-zA-Z]{2})\s*\t*(\d{2})\s*\t*(\d{4})\s*\t*(\d{4})\s*\t*(\d{2})\s*\t*(\d{10})$/i'], //Listo
-            'about' => ['nullable','min:20','max:250'] //Listo
+            'sobreti' => ['nullable','min:20','max:250'] //Listo
         ]);
     }
 
@@ -77,13 +77,13 @@ class RegisterController extends Controller
     {
         
         $usuario = new User();
-        $usuario->name = $data['name'];
-        $usuario->surname = $data['surname'];
+        $usuario->name = $data['nombre'];
+        $usuario->surname = $data['apellido'];
         $usuario->dni = $data['dni'];
-        $usuario->phone = $data['phone'];
+        $usuario->phone = $data['telefono'];
         $usuario->country = $data['country'];
         $usuario->iban= $data['iban'];
-        $usuario->about = $data['about'];
+        $usuario->about = $data['sobreti'];
         $usuario->email = $data['email'];
         $usuario->password = Hash::make($data['password']);
         
