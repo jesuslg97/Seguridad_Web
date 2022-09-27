@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 
-class RegisterController extends Controller 
+class RegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -52,18 +52,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        //https://regexr.com/3c53v
         return Validator::make($data, [
-            'nombre' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:20'], //Listo
-            'apellido' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:40'], //Listo
-            'dni' => ['required','regex:/^[0-9]{8}[A-Z]$/i'],//Listo
-            'email' => ['required', 'email', 'unique:users'], //Listo
-            'password' => ['required', 'min:10', 'confirmed','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$/i'],//Listo
-            'password_confirmation' =>['required'], //Listo
-            'telefono' => ['nullable','min:9','max:12','regex:/^[+]{1}([0-9]{9,11})$/i'], //Listo
-            'country' =>['nullable'], //Listo
-            'iban'=> ['required','regex:/^([a-zA-Z]{2})\s*\t*(\d{2})\s*\t*(\d{4})\s*\t*(\d{4})\s*\t*(\d{2})\s*\t*(\d{10})$/i'], //Listo
-            'sobreti' => ['nullable','min:20','max:250'] //Listo
+            'nombre' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:20'],
+            'apellido' => ['required', 'regex:/^[a-zA-Z\s]*$/','min:2', 'max:40'],
+            'dni' => ['required','regex:/^[0-9]{8}[A-Z]$/i'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'min:10', 'confirmed','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{10,}$/i'],
+            'password_confirmation' =>['required'],
+            'telefono' => ['nullable','min:9','max:12','regex:/^[+]{1}([0-9]{9,11})$/i'],
+            'country' =>['nullable'],
+            'iban'=> ['required','regex:/^([a-zA-Z]{2})\s*\t*(\d{2})\s*\t*(\d{4})\s*\t*(\d{4})\s*\t*(\d{2})\s*\t*(\d{10})$/i'],
+            'sobreti' => ['nullable','min:20','max:250']
         ]);
     }
 
@@ -75,7 +74,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
         $usuario = new User();
         $usuario->name = $data['nombre'];
         $usuario->surname = $data['apellido'];
@@ -86,12 +84,10 @@ class RegisterController extends Controller
         $usuario->about = $data['sobreti'];
         $usuario->email = $data['email'];
         $usuario->password = Hash::make($data['password']);
-        
+
         $usuario->save();
 
-        
         return $usuario;
-
     }
 
 }
